@@ -54,7 +54,8 @@ def lambda_handler(event, context):
     
     current_date = datetime.utcnow()
     #call function get last execution status
-    max_value,last_execution_status = get_last_run_info_mwaa()
+    dag_name="####replace dag name from your environment here"
+    max_value,last_execution_status = get_last_run_info_mwaa(dag_name)
     #reformating the maximum timestamp value to find out the difference with current date
     date_path = datetime.strptime(max_value,'%Y-%m-%dT%H:%M:%S.%f+00:00')
     delta = math.ceil ((current_date-date_path).total_seconds()/3600)
